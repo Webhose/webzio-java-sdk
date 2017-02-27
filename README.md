@@ -90,14 +90,12 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 			System.out.println(((JSONObject) o).get("language"));	// Print language
 		}
 ```
-	* keyword - the search query as Map Object query.
-  
-  Arguments:
 
-  * `endpoint`: 
-    * `filterWebData` - access to the news/blogs/forums/reviews API
-    * `productSearch` - access to data about eCommerce products/services
-    * `darkWebAPI` - access to the dark web (coming soon)
+	* keyword - the search query as Map Object query.
+	* endpoint 
+	   * `filterWebData` - access to the news/blogs/forums/reviews API
+	   * `productSearch` - access to data about eCommerce products/services
+	   * `darkWebAPI` - access to the dark web (coming soon)
 
 
 * getNext() - Convenient method to fetch next query page. Returns JSONObject instance.
