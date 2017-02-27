@@ -37,7 +37,7 @@ Now you can make a request and inspect the results:
 	    Map<String, Object> queries = new HashMap<String, Object>();
 	    queries.put("q", "foobar");
 	    
-	   JSONObject result = webhoseClient.query("filterWebData", queries);
+	    JSONObject result = webhoseClient.query("filterWebData", queries);
 
 		System.out.println(result.get("totalResults")); 	// Print posts count
 		
