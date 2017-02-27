@@ -3,8 +3,14 @@
 A simple way to access the [webhose.io](https://webhose.io) API from your Java code
 
 ```java
+		// Create a WebhoseIOClient instance
 		WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(API_KEY);
-		WebhoseResult result = webhoseClient.query("github");
+		
+		// Create set of queries
+	    Map<String, Object> queries = new HashMap<String, Object>();
+	    queries.put("q", "github");
+	    
+		WebhoseResult result = webhoseClient.query("filterWebData", queries);
 		System.out.println(result.getTotalResults());
 ```
 ## API Key
@@ -24,8 +30,14 @@ To get started, you need to import the library, and set your access token.
 		WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(API_KEY);
 ```
 
+Now you can make a request and inspect the results:
+
 ```java
-		WebhoseResult result = webhoseClient.query("github");
+		// Create set of queries
+	    Map<String, Object> queries = new HashMap<String, Object>();
+	    queries.put("q", "github");
+	    
+		WebhoseResult result = webhoseClient.query("filterWebData", queries);
 
 		// Print posts count
 		System.out.println(result.getTotalResults());
