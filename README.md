@@ -63,7 +63,7 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 ## Full documentation
 ### WebhoseIOClient Class
 
-* getInstance(token)
+###getInstance(token)###
 
 ```java
 	WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);
@@ -73,7 +73,7 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
   
 ### Query
 
-* query(endpoint, keyword) - Convenient method to query a specific keyword. Returns JSONObject instance.
+###query(endpoint, keyword)### - Convenient method to query a specific keyword. Returns JSONObject instance.
 
 	```java
 		// Create set of queries
@@ -98,7 +98,7 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
    * `darkWebAPI` - access to the dark web (coming soon)
 
 
-* getNext() - Convenient method to fetch next query page. Returns JSONObject instance.
+###getNext()### - Convenient method to fetch next query page. Returns JSONObject instance.
 
 ```java
 		JSONObject result = webhoseClient.getNext();
