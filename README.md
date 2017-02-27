@@ -72,10 +72,11 @@ Now you can make a request and inspect the results:
 ### Query
 
 * query(endpoint, keyword) - Convenient method to query a specific keyword. Returns JSONObject instance.
+
 ```java
 		// Create set of queries
 	    Map<String, Object> queries = new HashMap<String, Object>();
-	    queries.put("q", "github"); // Query using keyword `github`
+	    queries.put("q", "github"); // Query using keyword "github"
 	    queries.put("size", 3); 	// (OPTIONAL) Limit response to maximum of 3 items
 	    
 		JSONObject result = webhoseClient.query("filterWebData", queries);
@@ -90,6 +91,7 @@ Now you can make a request and inspect the results:
 			System.out.println(((JSONObject) o).get("language"));	// Print language
 		}		
 ```
+
 	* `keyword` - the search query as Map Object query.
   
 	  Arguments:
@@ -101,6 +103,7 @@ Now you can make a request and inspect the results:
 
 
 * getNext() - Convenient method to fetch next query page. Returns JSONObject instance.
+
 ```java
 		JSONObject result = webhoseClient.getNext();
 
