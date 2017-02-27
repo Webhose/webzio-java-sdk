@@ -31,8 +31,8 @@ To get started, you need to import the library, and set your access token.
 		System.out.println(result.getTotalResults());
 		
 		for(Post post : result.getPosts()) {
-			System.out.println(post.getTitle());
-			System.out.println(post.getAuthor());
-			System.out.println(post.getLanguage());
+			System.out.println(post.getTitle());		// print title
+			System.out.println(post.getAuthor());		// print author
+			System.out.println(post.getLanguage());		// print language
 		}		
 ```
