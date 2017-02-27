@@ -9,8 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.webhoseio.sdk.models.WebhoseResult;
 
 public class WebhoseIOClient {
