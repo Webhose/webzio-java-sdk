@@ -87,9 +87,8 @@ Now you can make a request and inspect the results:
 			System.out.println(((JSONObject) o).get("title"));	// Print title
 			System.out.println(((JSONObject) o).get("author"));	// Print author
 			System.out.println(((JSONObject) o).get("language"));	// Print language
-		}```
-
-
+		}
+``````
 		* keyword - the search query as Map Object query.
 	  
 		  Arguments:
