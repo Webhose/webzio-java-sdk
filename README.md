@@ -60,7 +60,6 @@ Now you can make a request and inspect the results:
 ```
 
 ## Full documentation
-
 ### WebhoseIOClient Class
 
 * getInstance(token)
@@ -72,14 +71,14 @@ Now you can make a request and inspect the results:
   
 ### Query
 
-* query(endpoint, query)
+* query(endpoint, keyword) - Convenient method to query a specific keyword. Returns JSONObject instance.
 ```java
 		// Create set of queries
 	    Map<String, Object> queries = new HashMap<String, Object>();
 	    queries.put("q", "github"); // Query using keyword `github`
-	    queries.put("size", 3); 	// Limit response to maximum of 3 items
+	    queries.put("size", 3); 	// (OPTIONAL) Limit response to maximum of 3 items
 	    
-		JSONObject result = webhoseClient.`query`("filterWebData", queries);
+		JSONObject result = webhoseClient.query("filterWebData", queries);
 
 		System.out.println(result.get("totalResults")); 	// Print posts count
 		
@@ -91,7 +90,7 @@ Now you can make a request and inspect the results:
 			System.out.println(((JSONObject) o).get("language"));	// Print language
 		}		
 ```
-	* `query` - the search query as Map Object query.
+	* `keyword` - the search query as Map Object query.
   
   Arguments:
 
@@ -100,6 +99,21 @@ Now you can make a request and inspect the results:
     * `productSearch` - access to data about eCommerce products/services
     * `darkWebAPI` - access to the dark web (coming soon)
 
-### WebhoseQuery class
 
+* getNext() - Convenient method to fetch next query page. Returns JSONObject instance.
+```java
+		JSONObject result = webhoseClient.getNext();
+
+		System.out.println(result.get("totalResults")); 	// Print posts count
+		
+		JSONArray postArray = result.getJSONArray("posts");
+		
+		for(Object o  : postArray) {
+			System.out.println(((JSONObject) o).get("title"));	// Print title
+			System.out.println(((JSONObject) o).get("author"));	// Print author
+			System.out.println(((JSONObject) o).get("language"));	// Print language
+		}		
+```
+  -----------------------------------------------------------------------
+  
 
