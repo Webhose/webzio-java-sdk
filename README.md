@@ -13,7 +13,7 @@ A simple way to access the [webhose.io](https://webhose.io) API from your Java c
 		System.out.println(result.getTotalResults());
 ```
 ## API Key
-
+	
 To make use of the webhose.io API, you need to obtain a token that would be
 used on every request. To obtain an API key, create an account at
 https://webhose.io/auth/signup, and then go into
@@ -64,7 +64,7 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 ### WebhoseIOClient Class
 
 **getInstance(token)**
-	- Initialize WebOClient and return an instance. 
+	Initialize WebOClient and return an instance. 
 	
 ```java
 	WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);
