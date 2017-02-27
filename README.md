@@ -23,3 +23,16 @@ To get started, you need to import the library, and set your access token.
 ```java
 		WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(API_KEY);
 ```
+
+```java
+		WebhoseResult result = webhoseClient.query("github");
+
+		// Print posts count
+		System.out.println(result.getTotalResults());
+		
+		for(Post post : result.getPosts()) {
+			System.out.println(post.getTitle());
+			System.out.println(post.getAuthor());
+			System.out.println(post.getLanguage());
+		}		
+```
