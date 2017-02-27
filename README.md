@@ -63,6 +63,7 @@ Now you can make a request and inspect the results:
 ### WebhoseIOClient Class
 
 * getInstance(token)
+
 ```java
 	WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);
 ```
@@ -91,14 +92,16 @@ Now you can make a request and inspect the results:
 			System.out.println(((JSONObject) o).get("language"));	// Print language
 		}
 ```
-	* keyword - the search query as Map Object query.
-  
-	  Arguments:
-	
-	  * `endpoint`: 
-	    * `filterWebData` - access to the news/blogs/forums/reviews API
-	    * `productSearch` - access to data about eCommerce products/services
-	    * `darkWebAPI` - access to the dark web (coming soon)
+
+
+		* keyword - the search query as Map Object query.
+	  
+		  Arguments:
+		
+		  * `endpoint`: 
+		    * `filterWebData` - access to the news/blogs/forums/reviews API
+		    * `productSearch` - access to data about eCommerce products/services
+		    * `darkWebAPI` - access to the dark web (coming soon)
 
 
 * getNext() - Convenient method to fetch next query page. Returns JSONObject instance.
