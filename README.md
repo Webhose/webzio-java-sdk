@@ -61,17 +61,36 @@ Now you can make a request and inspect the results:
 
 ## Full documentation
 
-### WebhoseClient Instance
+### WebhoseIOClient Class
+
+* getInstance(token)
 ```java
 	WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);
 ```
-
-* getInstance(token)
-
   * `token` - your API key
+  
+  
+### Query
 
-* search(endpoint, query)
+* query(endpoint, query)
+```java
+		// Create set of queries
+	    Map<String, Object> queries = new HashMap<String, Object>();
+	    queries.put("q", "github"); // Query using keyword `github`
+	    queries.put("size", 3); 	// Limit response to maximum of 3 items
+	    
+		JSONObject result = webhoseClient.`query`("filterWebData", queries);
 
+		System.out.println(result.get("totalResults")); 	// Print posts count
+		
+		JSONArray postArray = result.getJSONArray("posts");
+		
+		for(Object o  : postArray) {
+			System.out.println(((JSONObject) o).get("title"));	// Print title
+			System.out.println(((JSONObject) o).get("author"));	// Print author
+			System.out.println(((JSONObject) o).get("language"));	// Print language
+		}		
+```
 	* `query` - the search query as Map Object query.
   
   Arguments:
