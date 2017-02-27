@@ -35,16 +35,17 @@ Now you can make a request and inspect the results:
 ```java
 		// Create set of queries
 	    Map<String, Object> queries = new HashMap<String, Object>();
-	    queries.put("q", "github");
+	    queries.put("q", "foobar");
 	    
-		WebhoseResult result = webhoseClient.query("filterWebData", queries);
+	   JSONObject result = webhoseClient.query("filterWebData", queries);
 
-		// Print posts count
-		System.out.println(result.getTotalResults());
+		System.out.println(result.get("totalResults")); 	// Print posts count
 		
-		for(Post post : result.getPosts()) {
-			System.out.println(post.getTitle());		// print title
-			System.out.println(post.getAuthor());		// print author
-			System.out.println(post.getLanguage());		// print language
+		JSONArray postArray = result.getJSONArray("posts");
+		
+		for(Object o  : postArray) {
+			System.out.println(((JSONObject) o).get("title"));	// Print title
+			System.out.println(((JSONObject) o).get("author"));	// Print author
+			System.out.println(((JSONObject) o).get("language"));	// Print language
 		}		
 ```

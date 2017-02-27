@@ -9,22 +9,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
-import com.google.gson.Gson;
-import com.webhoseio.sdk.models.WebhoseResult;
+import org.json.JSONObject;
 
 public class WebhoseIOClient {
 
 	private static WebhoseIOClient mClient;
 	private String mApiKey;
-	private Gson mGson;
-
+	
 	private WebhoseIOClient() {
 	}
 
 	private WebhoseIOClient(String apiKey) {
 		this.mApiKey = apiKey;
-		
-		this.mGson = new Gson();
 	}
 
 	public static WebhoseIOClient getInstance(String apiKey) {
@@ -35,18 +31,15 @@ public class WebhoseIOClient {
 		return mClient;
 	}
 
-	public WebhoseResult query(String endpoint,  Map<String, Object> queries) {
+	public JSONObject query(String endpoint,  Map<String, Object> queries) {
 		try {
 			String queryString = "";
 			
 			for(String key : queries.keySet()) {
 				queryString += String.format("%s=%s", key, queries.get(key));
 			}
-			
-			System.out.println("queryString : " + queryString);
-			
+						
 			URL url = new URL(String.format("http://webhose.io/%s?token=%s&format=json&%s", endpoint, mApiKey, queryString));
-			System.out.println(url.toString());
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 		    connection.setDoOutput(true);
@@ -61,7 +54,8 @@ public class WebhoseIOClient {
 		      response.append('\r');
 		    }
 		    rd.close();
-		    return mGson.fromJson(response.toString(), WebhoseResult.class);
+		    
+		    return new JSONObject(response.toString());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
