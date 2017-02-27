@@ -10,7 +10,7 @@ A simple way to access the [webhose.io](https://webhose.io) API from your Java c
 	    Map<String, Object> queries = new HashMap<String, Object>();
 	    queries.put("q", "github");
 	    
-	   JSONObject result = webhoseClient.query("filterWebData", queries);
+	    JSONObject result = webhoseClient.query("filterWebData", queries);
 		System.out.println(result.getTotalResults());
 ```
 ## API Key
