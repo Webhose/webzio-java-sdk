@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.webhoseio.sdk.models.WebhoseResult;
@@ -34,9 +35,17 @@ public class WebhoseIOClient {
 		return mClient;
 	}
 
-	public WebhoseResult query(String query) {
+	public WebhoseResult query(String endpoint,  Map<String, Object> queries) {
 		try {
-			URL url = new URL(String.format("http://webhose.io/search?token=%s&format=json&q=%s", mApiKey, query));
+			String queryString = "";
+			
+			for(String key : queries.keySet()) {
+				queryString += String.format("%s=%s", key, queries.get(key));
+			}
+			
+			System.out.println("queryString : " + queryString);
+			
+			URL url = new URL(String.format("http://webhose.io/%s?token=%s&format=json&%s", endpoint, mApiKey, queryString));
 			System.out.println(url.toString());
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
