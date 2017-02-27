@@ -64,7 +64,7 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 ### WebhoseIOClient Class
 
 **getInstance(token)**
-	Initialize WebOClient and return an instance. 
+	Initialize WebhoseIOClient and return an instance. 
 	
 ```java
 	WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);
