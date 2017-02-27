@@ -31,13 +31,6 @@ To get started, you need to import the library, and set your access token.
 
 		WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(API_KEY);
 ```
-**API Endpoints**
-
-The first parameter the `Query` function accepts is the API endpoint string. Available endpoints:
-* `filterWebData` - access to the news/blogs/forums/reviews API
-* `productSearch` - access to data about eCommerce products/services
-* `darkWebAPI` - access to the dark web (coming soon)
-
 	
 Now you can make a request and inspect the results:
 
@@ -58,6 +51,13 @@ Now you can make a request and inspect the results:
 			System.out.println(((JSONObject) o).get("language"));	// Print language
 		}		
 ```
+	***API Endpoints***
+	
+	The first parameter the `Query` function accepts is the API endpoint string. Available endpoints:
+	* `filterWebData` - access to the news/blogs/forums/reviews API
+	* `productSearch` - access to data about eCommerce products/services
+	* `darkWebAPI` - access to the dark web (coming soon)
+
 
 ## Full documentation
 ### WebhoseIOClient Class
