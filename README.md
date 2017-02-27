@@ -76,28 +76,26 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 * query(endpoint, keyword) - Convenient method to query a specific keyword. Returns JSONObject instance.
 
 ```java
-		// Create set of queries
-	    Map<String, Object> queries = new HashMap<String, Object>();
-	    queries.put("q", "github"); // Query using keyword "github"
-	    queries.put("size", 3); 	// (OPTIONAL) Limit response to maximum of 3 items
-	    // Fetch query result
-		JSONObject result = webhoseClient.query("filterWebData", queries);
-		System.out.println(result.get("totalResults")); 	// Print posts count		
-		JSONArray postArray = result.getJSONArray("posts");
-		for(Object o  : postArray) {
-			System.out.println(((JSONObject) o).get("title"));	// Print title
-			System.out.println(((JSONObject) o).get("author"));	// Print author
-			System.out.println(((JSONObject) o).get("language"));	// Print language
-		}
+	// Create set of queries
+    Map<String, Object> queries = new HashMap<String, Object>();
+    queries.put("q", "github"); // Query using keyword "github"
+    queries.put("size", 3); 	// (OPTIONAL) Limit response to maximum of 3 items
+    // Fetch query result
+	JSONObject result = webhoseClient.query("filterWebData", queries);
+	System.out.println(result.get("totalResults")); 	// Print posts count		
+	JSONArray postArray = result.getJSONArray("posts");
+	for(Object o  : postArray) {
+		System.out.println(((JSONObject) o).get("title"));	// Print title
+		System.out.println(((JSONObject) o).get("author"));	// Print author
+		System.out.println(((JSONObject) o).get("language"));	// Print language
+	}
 ```
-	* keyword - the search query as Map Object query.
-  
-  Arguments:
 
-  * `endpoint`: 
-    * `filterWebData` - access to the news/blogs/forums/reviews API
-    * `productSearch` - access to data about eCommerce products/services
-    * `darkWebAPI` - access to the dark web (coming soon)
+* keyword - the search query as Map Object query.
+* endpoint 
+   * `filterWebData` - access to the news/blogs/forums/reviews API
+   * `productSearch` - access to data about eCommerce products/services
+   * `darkWebAPI` - access to the dark web (coming soon)
 
 
 * getNext() - Convenient method to fetch next query page. Returns JSONObject instance.
