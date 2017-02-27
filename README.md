@@ -62,7 +62,9 @@ Now you can make a request and inspect the results:
 ## Full documentation
 
 ### WebhoseClient Instance
-#### `WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);`
+```java
+	WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);
+```
 
 * getInstance(token)
 
