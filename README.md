@@ -5,11 +5,10 @@ A simple way to access the [webhose.io](https://webhose.io) API from your Java c
 ```java
 		// Create a WebhoseIOClient instance
 		WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(API_KEY);
-		
 		// Create set of queries
 	    Map<String, Object> queries = new HashMap<String, Object>();
 	    queries.put("q", "github");
-	    
+	    // Fetch query result
 	    JSONObject result = webhoseClient.query("filterWebData", queries);
 		System.out.println(result.getTotalResults());
 ```
@@ -34,29 +33,31 @@ To get started, you need to import the library, and set your access token.
 	
 Now you can make a request and inspect the results:
 
-```java
-		// Create set of queries
-	    Map<String, Object> queries = new HashMap<String, Object>();
-	    queries.put("q", "foobar");
-	    
-	    JSONObject result = webhoseClient.query("filterWebData", queries);
-
-		System.out.println(result.get("totalResults")); 	// Print posts count
-		
-		JSONArray postArray = result.getJSONArray("posts");
-		
-		for(Object o  : postArray) {
-			System.out.println(((JSONObject) o).get("title"));	// Print title
-			System.out.println(((JSONObject) o).get("author"));	// Print author
-			System.out.println(((JSONObject) o).get("language"));	// Print language
-		}		
-```
-	***API Endpoints***
+	```java
+			// Create set of queries
+		    Map<String, Object> queries = new HashMap<String, Object>();
+		    queries.put("q", "foobar");
+		    
+		    JSONObject result = webhoseClient.query("filterWebData", queries);
 	
-	The first parameter the `Query` function accepts is the API endpoint string. Available endpoints:
-	* `filterWebData` - access to the news/blogs/forums/reviews API
-	* `productSearch` - access to data about eCommerce products/services
-	* `darkWebAPI` - access to the dark web (coming soon)
+			System.out.println(result.get("totalResults")); 	// Print posts count
+			
+			JSONArray postArray = result.getJSONArray("posts");
+			
+			for(Object o  : postArray) {
+				System.out.println(((JSONObject) o).get("title"));	// Print title
+				System.out.println(((JSONObject) o).get("author"));	// Print author
+				System.out.println(((JSONObject) o).get("language"));	// Print language
+			}		
+	```
+	
+	
+***API Endpoints***
+
+The first parameter the `Query` function accepts is the API endpoint string. Available endpoints:
+* `filterWebData` - access to the news/blogs/forums/reviews API
+* `productSearch` - access to data about eCommerce products/services
+* `darkWebAPI` - access to the dark web (coming soon)
 
 
 ## Full documentation
