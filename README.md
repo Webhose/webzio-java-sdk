@@ -37,6 +37,7 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 * `filterWebData` - access to the news/blogs/forums/reviews API
 * `productSearch` - access to data about eCommerce products/services
 * `darkWebAPI` - access to the dark web (coming soon)
+
 	
 Now you can make a request and inspect the results:
 
@@ -61,15 +62,22 @@ Now you can make a request and inspect the results:
 ## Full documentation
 
 ### WebhoseClient Instance
+#### `WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(TOKEN);`
 
 * getInstance(token)
 
-  * token - your API key
+  * `token` - your API key
 
 * search(endpoint, query)
 
 	* `query` - the search query as Map Object query.
   
+  Arguments:
+
+  * `endpoint`: 
+    * `filterWebData` - access to the news/blogs/forums/reviews API
+    * `productSearch` - access to data about eCommerce products/services
+    * `darkWebAPI` - access to the dark web (coming soon)
 
 ### WebhoseQuery class
 
