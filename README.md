@@ -6,11 +6,11 @@ A simple way to access the [webhose.io](https://webhose.io) API from your Java c
 		// Create a WebhoseIOClient instance
 		WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance(API_KEY);
 		// Create set of queries
-	    Map<String, Object> queries = new HashMap<String, Object>();
+	    Map<String, String> queries = new HashMap<String, String>();
 	    queries.put("q", "github");
 	    // Fetch query result
 	    JSONObject result = webhoseClient.query("filterWebData", queries);
-		System.out.println(result.getTotalResults());
+        System.out.println(result.get("totalResults"));     // Print posts count
 ```
 ## API Key
 	
@@ -35,7 +35,7 @@ Now you can make a request and inspect the results:
 
 ```java
 		// Create set of queries
-	    Map<String, Object> queries = new HashMap<String, Object>();
+	    Map<String, String> queries = new HashMap<String, String>();
 	    queries.put("q", "foobar");
 	    
 	    JSONObject result = webhoseClient.query("filterWebData", queries);
@@ -79,9 +79,9 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 
 ```java
 		// Create set of queries
-	    Map<String, Object> queries = new HashMap<String, Object>();
+	    Map<String, String> queries = new HashMap<String, String>();
 	    queries.put("q", "github"); // Query using keyword "github"
-	    queries.put("size", 3); 	// (OPTIONAL) Limit response to maximum of 3 items
+	    queries.put("size", "3"); 	// (OPTIONAL) Limit response to maximum of 3 items
 	    // Fetch query result
 		JSONObject result = webhoseClient.query("filterWebData", queries);
 		System.out.println(result.get("totalResults")); 	// Print posts count		
