@@ -74,10 +74,10 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
   
 ### Query
 
-**query(endpoint, keyword)**
+**query(endpoint, queries)**
 	Convenient method to query a specific keyword. Returns JSONObject instance.
 
-	```java
+```java
 		// Create set of queries
 	    Map<String, Object> queries = new HashMap<String, Object>();
 	    queries.put("q", "github"); // Query using keyword "github"
@@ -91,9 +91,9 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 			System.out.println(((JSONObject) o).get("author"));	// Print author
 			System.out.println(((JSONObject) o).get("language"));	// Print language
 		}
-	```
+```
 
-* keyword - the search query as Map Object query.
+* queries - a set of key value hashmap for each parameter to be passed to the endpoint. 
 * endpoint 
    * `filterWebData` - access to the news/blogs/forums/reviews API
    * `productSearch` - access to data about eCommerce products/services
