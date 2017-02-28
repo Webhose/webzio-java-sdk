@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.Map;
 
 import org.apache.http.client.utils.URIBuilder;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class WebhoseIOClient {
@@ -72,7 +71,7 @@ public class WebhoseIOClient {
 		return o;
 	}
 
-	public JSONObject query(String endpoint, Map<String, String> queries) {
+	public JSONObject query(String endpoint, Map<String, String> queries) throws URISyntaxException, IOException {
 		try {
 			URIBuilder builder = new URIBuilder(String.format("%s/%s?token=%s&format=json", WEBHOSE_BASE_URL, endpoint, mApiKey));
 			for (String key : queries.keySet()) {
@@ -80,7 +79,7 @@ public class WebhoseIOClient {
 			}		
 			
 			return getResponse(builder.toString());
-		} catch (JSONException | IOException | URISyntaxException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -90,10 +89,10 @@ public class WebhoseIOClient {
 	 * Get next response of current request
 	 * @return JSONObject response
 	 */
-	public JSONObject getNext() {
+	public JSONObject getNext() throws IOException, URISyntaxException {
 		try {
 			return  getResponse(mNext);
-		} catch (IOException | URISyntaxException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
