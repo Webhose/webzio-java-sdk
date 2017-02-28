@@ -10,7 +10,7 @@ A simple way to access the [webhose.io](https://webhose.io) API from your Java c
 	    queries.put("q", "github");
 	    // Fetch query result
 	    JSONObject result = webhoseClient.query("filterWebData", queries);
-		System.out.println(result.getTotalResults());
+        System.out.println(result.get("totalResults"));     // Print posts count
 ```
 ## API Key
 	
