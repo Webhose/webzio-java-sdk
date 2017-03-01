@@ -9,8 +9,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.apache.http.client.utils.URIBuilder;
-import org.json.JSONObject;
+
 
 public class WebhoseIOClient {
 
@@ -45,8 +48,8 @@ public class WebhoseIOClient {
 	 * @throws IOException
 	 * @throws URISyntaxException 
 	 */
-	public JSONObject getResponse(String rawUrl) throws IOException, URISyntaxException {
-		System.out.println("Connecting to url : " + rawUrl);
+	public JsonElement getResponse(String rawUrl) throws IOException, URISyntaxException {
+
 		URL url = new URL(rawUrl);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
@@ -59,19 +62,19 @@ public class WebhoseIOClient {
 		String line;
 		while ((line = rd.readLine()) != null) {
 			response.append(line);
-			response.append('\r');
 		}
 		rd.close();
-		
-		JSONObject o = new JSONObject(response.toString());
+
+        JsonParser parser = new JsonParser();
+        JsonElement o = parser.parse(response.toString());
 		
 		// Set next query URL
-		mNext = WEBHOSE_BASE_URL + o.getString("next");
+		mNext = WEBHOSE_BASE_URL + o.getAsJsonObject().get("next");
 
 		return o;
 	}
 
-	public JSONObject query(String endpoint, Map<String, String> queries) throws URISyntaxException, IOException {
+	public JsonElement query(String endpoint, Map<String, String> queries) throws URISyntaxException, IOException {
 		try {
 			URIBuilder builder = new URIBuilder(String.format("%s/%s?token=%s&format=json", WEBHOSE_BASE_URL, endpoint, mApiKey));
 			for (String key : queries.keySet()) {
@@ -89,7 +92,7 @@ public class WebhoseIOClient {
 	 * Get next response of current request
 	 * @return JSONObject response
 	 */
-	public JSONObject getNext() throws IOException, URISyntaxException {
+	public JsonElement getNext() throws IOException, URISyntaxException {
 		try {
 			return  getResponse(mNext);
 		} catch (Exception e) {

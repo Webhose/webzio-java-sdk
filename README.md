@@ -9,8 +9,8 @@ A simple way to access the [webhose.io](https://webhose.io) API from your Java c
 	    Map<String, String> queries = new HashMap<String, String>();
 	    queries.put("q", "github");
 	    // Fetch query result
-	    JSONObject result = webhoseClient.query("filterWebData", queries);
-        System.out.println(result.get("totalResults"));     // Print posts count
+	    JsonElement result = webhoseClient.query("filterWebData", queries);
+        System.out.println(result.getAsJsonObject().get("totalResults"));     // Print posts count
 ```
 ## API Key
 	
@@ -38,17 +38,17 @@ Now you can make a request and inspect the results:
 	    Map<String, String> queries = new HashMap<String, String>();
 	    queries.put("q", "foobar");
 	    
-	    JSONObject result = webhoseClient.query("filterWebData", queries);
+	    JsonElement result = webhoseClient.query("filterWebData", queries);
 	
-		System.out.println(result.get("totalResults")); 	// Print posts count
+		System.out.println(result.getAsJsonObject().get("totalResults"));     // Print posts count
 		
-		JSONArray postArray = result.getJSONArray("posts");
-		
-		for(Object o  : postArray) {
-			System.out.println(((JSONObject) o).get("title"));	// Print title
-			System.out.println(((JSONObject) o).get("author"));	// Print author
-			System.out.println(((JSONObject) o).get("language"));	// Print language
-		}		
+		JsonArray postArray = result.getAsJsonObject().getAsJsonArray("posts");
+
+        for(JsonElement o  : postArray) {
+            System.out.println(o.getAsJsonObject().get("title"));  // Print title
+            System.out.println(o.getAsJsonObject().get("author")); // Print author
+            System.out.println(o.getAsJsonObject().get("language"));   // Print language
+        }
 ```
 	
 	
@@ -83,14 +83,17 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 	    queries.put("q", "github"); // Query using keyword "github"
 	    queries.put("size", "3"); 	// (OPTIONAL) Limit response to maximum of 3 items
 	    // Fetch query result
-		JSONObject result = webhoseClient.query("filterWebData", queries);
-		System.out.println(result.get("totalResults")); 	// Print posts count		
-		JSONArray postArray = result.getJSONArray("posts");
-		for(Object o  : postArray) {
-			System.out.println(((JSONObject) o).get("title"));	// Print title
-			System.out.println(((JSONObject) o).get("author"));	// Print author
-			System.out.println(((JSONObject) o).get("language"));	// Print language
-		}
+		JsonElement result = webhoseClient.query("filterWebData", queries);
+
+        System.out.println(result.getAsJsonObject().get("totalResults"));     // Print posts count
+
+        JsonArray postArray = result.getAsJsonObject().getAsJsonArray("posts");
+
+        for(JsonElement o  : postArray) {
+            System.out.println(o.getAsJsonObject().get("title"));  // Print title
+            System.out.println(o.getAsJsonObject().get("author")); // Print author
+            System.out.println(o.getAsJsonObject().get("language"));   // Print language
+        }
 ```
 
 * queries - a set of key value hashmap for each parameter to be passed to the API endpoint. 
@@ -104,17 +107,17 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 	Convenient method to fetch next query page. Returns JSONObject instance.
 
 ```java
-		JSONObject result = webhoseClient.getNext();
+		JsonElement result = webhoseClient.getNext();
 
-		System.out.println(result.get("totalResults")); 	// Print posts count
+		System.out.println(result.getAsJsonObject().get("totalResults"));     // Print posts count
 		
-		JSONArray postArray = result.getJSONArray("posts");
-		
-		for(Object o  : postArray) {
-			System.out.println(((JSONObject) o).get("title"));	// Print title
-			System.out.println(((JSONObject) o).get("author"));	// Print author
-			System.out.println(((JSONObject) o).get("language"));	// Print language
-		}		
+		JsonArray postArray = result.getAsJsonObject().getAsJsonArray("posts");
+
+        for(JsonElement o  : postArray) {
+            System.out.println(o.getAsJsonObject().get("title"));  // Print title
+            System.out.println(o.getAsJsonObject().get("author")); // Print author
+            System.out.println(o.getAsJsonObject().get("language"));   // Print language
+        }
 ```
   -----------------------------------------------------------------------
   
