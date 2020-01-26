@@ -69,7 +69,7 @@ public class WebhoseIOClient {
         JsonElement o = parser.parse(response.toString());
 		
 		// Set next query URL
-		mNext = WEBHOSE_BASE_URL + o.getAsJsonObject().get("next");
+        	mNext = String.format("%s%s", WEBHOSE_BASE_URL, o.getAsJsonObject().get("next").getAsString());
 
 		return o;
 	}
