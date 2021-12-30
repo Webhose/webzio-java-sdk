@@ -60,7 +60,7 @@ The first parameter the `Query` function accepts is the API endpoint string. Ava
 
 
 ## Full documentation
-### WebhoseIOClient Class
+### WebzIOClient Class
 
 **getInstance(token)**
 	Initialize WebzIOClient and return an instance. 
