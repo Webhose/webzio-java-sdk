@@ -98,8 +98,15 @@ for(JsonElement o  : postArray) {
 * queries - a set of key value hashmap for each parameter to be passed to the API endpoint. 
 * endpoint 
    * `filterWebContent` - access to the news/blogs/forums/reviews API
-   * `productFilter` - access to data about eCommerce products/services
-   * `darkFilter` - access to the dark web (coming soon)
+   * `cyberFilter` - access to the dark web/cyber API
+   * `nseFilter` - access to the enriched news API
+   * `reviewFilter` - access to the reviews API
+   * `dbdocFilter` - access to the breach detection API
+   * `govFilter` - access to the government data API
+   * `nbdSeg` - access to the news/blogs/forums/reviews data segmentation API
+   * `enaSeg` - access to the enriched news data segmentation API
+   * `reviewSeg` - access to the reviews data segmentation API
+   * `cyberSeg` - access to the dark web/cyber data segmentation API
 
 
 **getNext()**
