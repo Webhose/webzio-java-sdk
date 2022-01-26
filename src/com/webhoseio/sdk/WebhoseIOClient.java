@@ -1,4 +1,4 @@
-package com.webz.sdk;
+package com.webhoseio.sdk;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,26 +15,26 @@ import com.google.gson.JsonParser;
 import org.apache.http.client.utils.URIBuilder;
 
 
-public class WebzIOClient {
+public class WebhoseIOClient {
 
-	private static final String WEBZ_BASE_URL = "http://api.webz.io";
-	private static WebzIOClient mClient;
+	private static final String WEBHOSE_BASE_URL = "http://webhose.io";
+	private static WebhoseIOClient mClient;
 	private String mNext;
 	private String mApiKey;
 
 	/**
 	 * Private constructor
 	 */
-	private WebzIOClient() {
+	private WebhoseIOClient() {
 	}
 
-	private WebzIOClient(String apiKey) {
+	private WebhoseIOClient(String apiKey) {
 		this.mApiKey = apiKey;
 	}
 
-	public static WebzIOClient getInstance(String apiKey) {
+	public static WebhoseIOClient getInstance(String apiKey) {
 		if (mClient == null) {
-			mClient = new WebzIOClient(apiKey);
+			mClient = new WebhoseIOClient(apiKey);
 		}
 
 		return mClient;
@@ -69,16 +69,16 @@ public class WebzIOClient {
         JsonElement o = parser.parse(response.toString());
 		
 		// Set next query URL
-        	mNext = String.format("%s%s", WEBZ_BASE_URL, o.getAsJsonObject().get("next").getAsString());
+        	mNext = String.format("%s%s", WEBHOSE_BASE_URL, o.getAsJsonObject().get("next").getAsString());
 
 		return o;
 	}
 
-	public JsonElement query(String endpoint, Map<String, String> params) throws URISyntaxException, IOException {
+	public JsonElement query(String endpoint, Map<String, String> queries) throws URISyntaxException, IOException {
 		try {
-			URIBuilder builder = new URIBuilder(String.format("%s/%s?token=%s&format=json", WEBZ_BASE_URL, endpoint, mApiKey));
-			for (String key : params.keySet()) {
-				builder.addParameter(key, params.get(key));
+			URIBuilder builder = new URIBuilder(String.format("%s/%s?token=%s&format=json", WEBHOSE_BASE_URL, endpoint, mApiKey));
+			for (String key : queries.keySet()) {
+				builder.addParameter(key, queries.get(key));
 			}		
 			
 			return getResponse(builder.toString());

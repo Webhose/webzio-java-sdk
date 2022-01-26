@@ -11,24 +11,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class WebzClientTest {
+public class WebhoseClientTest {
 
-	public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args)  throws IOException, URISyntaxException {
 
-		WebzIOClient webzClient = WebzIOClient.getInstance("670f37a4-2e44-49be-afbb-10a92a25c664");
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("q", "ipod");
+        WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance("XXX-XXXX-XXXX-XXXX-XXXX");
+        Map<String, String> queries = new HashMap<String, String>();
+        queries.put("q", "ipod");
 
-		JsonElement result = webzClient.query("filterWebData", params);
-		System.out.println(result.getAsJsonObject().get("totalResults"));
+        JsonElement result = webhoseClient.query("filterWebData", queries);
+        System.out.println(result.getAsJsonObject().get("totalResults"));
 
-        
-		JsonArray postArray = result.getAsJsonObject().getAsJsonArray("posts");
 
-		for (JsonElement o : postArray) {
-			System.out.println(o.getAsJsonObject().get("title")); // Print title
-			System.out.println(o.getAsJsonObject().get("author")); // Print author
-			System.out.println(o.getAsJsonObject().get("language")); // Print language
-		}
-	}
+        JsonArray postArray = result.getAsJsonObject().getAsJsonArray("posts");
+
+        for(JsonElement o  : postArray) {
+            System.out.println(o.getAsJsonObject().get("title"));  // Print title
+            System.out.println(o.getAsJsonObject().get("author")); // Print author
+            System.out.println(o.getAsJsonObject().get("language"));   // Print language
+        }
+    }
 }
