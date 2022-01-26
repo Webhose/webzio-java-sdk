@@ -16,10 +16,10 @@ public class WebhoseClientTest {
     public static void main(String[] args)  throws IOException, URISyntaxException {
 
         WebhoseIOClient webhoseClient = WebhoseIOClient.getInstance("XXX-XXXX-XXXX-XXXX-XXXX");
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("q", "ipod");
+        Map<String, String> queries = new HashMap<String, String>();
+        queries.put("q", "ipod");
 
-        JsonElement result = webhoseClient.query("filterWebData", params);
+        JsonElement result = webhoseClient.query("filterWebData", queries);
         System.out.println(result.getAsJsonObject().get("totalResults"));
 
 
