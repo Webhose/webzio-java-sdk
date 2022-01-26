@@ -74,11 +74,11 @@ public class WebhoseIOClient {
 		return o;
 	}
 
-	public JsonElement query(String endpoint, Map<String, String> queries) throws URISyntaxException, IOException {
+	public JsonElement query(String endpoint, Map<String, String> params) throws URISyntaxException, IOException {
 		try {
 			URIBuilder builder = new URIBuilder(String.format("%s/%s?token=%s&format=json", WEBHOSE_BASE_URL, endpoint, mApiKey));
-			for (String key : queries.keySet()) {
-				builder.addParameter(key, queries.get(key));
+			for (String key : params.keySet()) {
+				builder.addParameter(key, params.get(key));
 			}		
 			
 			return getResponse(builder.toString());
