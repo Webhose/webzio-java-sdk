@@ -14,10 +14,10 @@ public class WebzClientTest {
 	public static void main(String[] args) throws IOException, URISyntaxException {
 
 		WebzIOClient webzClient = WebzIOClient.getInstance("670f37a4-2e44-49be-afbb-10a92a25c664");
-		Map<String, String> queries = new HashMap<String, String>();
-		queries.put("q", "ipod");
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("q", "ipod");
 
-		JsonElement result = webzClient.query("filterWebData", queries);
+		JsonElement result = webzClient.query("filterWebData", params);
 		System.out.println(result.getAsJsonObject().get("totalResults"));
 
 		JsonArray postArray = result.getAsJsonObject().getAsJsonArray("posts");
