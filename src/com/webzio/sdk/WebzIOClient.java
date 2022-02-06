@@ -1,4 +1,4 @@
-package com.webhoseio.sdk;
+package com.webzio.sdk;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,26 +15,26 @@ import com.google.gson.JsonParser;
 import org.apache.http.client.utils.URIBuilder;
 
 
-public class WebhoseIOClient {
+public class WebzIOClient {
 
-	private static final String WEBHOSE_BASE_URL = "http://webhose.io";
-	private static WebhoseIOClient mClient;
+	private static final String WEBZ_BASE_URL = "http://api.webz.io";
+	private static WebzIOClient mClient;
 	private String mNext;
 	private String mApiKey;
 
 	/**
 	 * Private constructor
 	 */
-	private WebhoseIOClient() {
+	private WebzIOClient() {
 	}
 
-	private WebhoseIOClient(String apiKey) {
+	private WebzIOClient(String apiKey) {
 		this.mApiKey = apiKey;
 	}
 
-	public static WebhoseIOClient getInstance(String apiKey) {
+	public static WebzIOClient getInstance(String apiKey) {
 		if (mClient == null) {
-			mClient = new WebhoseIOClient(apiKey);
+			mClient = new WebzIOClient(apiKey);
 		}
 
 		return mClient;
@@ -69,16 +69,16 @@ public class WebhoseIOClient {
         JsonElement o = parser.parse(response.toString());
 		
 		// Set next query URL
-        	mNext = String.format("%s%s", WEBHOSE_BASE_URL, o.getAsJsonObject().get("next").getAsString());
+        	mNext = String.format("%s%s", WEBZ_BASE_URL, o.getAsJsonObject().get("next").getAsString());
 
 		return o;
 	}
 
-	public JsonElement query(String endpoint, Map<String, String> queries) throws URISyntaxException, IOException {
+	public JsonElement query(String endpoint, Map<String, String> params) throws URISyntaxException, IOException {
 		try {
-			URIBuilder builder = new URIBuilder(String.format("%s/%s?token=%s&format=json", WEBHOSE_BASE_URL, endpoint, mApiKey));
-			for (String key : queries.keySet()) {
-				builder.addParameter(key, queries.get(key));
+			URIBuilder builder = new URIBuilder(String.format("%s/%s?token=%s&format=json", WEBZ_BASE_URL, endpoint, mApiKey));
+			for (String key : params.keySet()) {
+				builder.addParameter(key, params.get(key));
 			}		
 			
 			return getResponse(builder.toString());
